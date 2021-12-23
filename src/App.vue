@@ -2,7 +2,10 @@
   <div id="app">
     <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> -->
-    <router-view/>
+    <!-- <router-view/> -->
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
     <main-tab-bar></main-tab-bar>
   </div>
 </template>
