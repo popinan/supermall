@@ -30,7 +30,7 @@ export default {
             observeDOM: true,
             observeImage: {
                 debounceTime: 100 // ms
-            },
+            }, // 相当于observeImage:true
             probeType: this.probeType,
             click: true,
             pullUpLoad: this.pullUpLoad,
