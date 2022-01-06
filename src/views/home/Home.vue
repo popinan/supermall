@@ -24,15 +24,15 @@ import FeatureView from './childcomp/FeatureView.vue'
 import TabControl from 'components/content/tabControl/TabControl.vue'
 import GoodsList from 'components/content/goods/GoodsList.vue'
 import Scroll from 'components/common/scroll/Scroll.vue'
-import BackTop from 'components/content/backtop/BackTop.vue'
 
 import {getHomeMultidata, getHomeGoods} from 'network/home.js'
+import {backTopMixin} from 'common/mixin.js'
 
 
 export default {
     name: 'Home',
     components: { NavBar, HomeSwiper, RecommendView, FeatureView, 
-    TabControl, GoodsList, Scroll, BackTop,
+    TabControl, GoodsList, Scroll,
     },
     data() {
       return{
@@ -44,12 +44,12 @@ export default {
           sell:{page:0, list:[]},
         },
         currentType: 'pop',
-        isShowTop: false,
         isShowTabcontrol: false,
         tabConOffsetTop: 0,
         saveY: 0
       }
     },
+    mixins: [backTopMixin],
     created() {
       // 1.请求swiper数据
       this.getHomeMultidata()
@@ -108,9 +108,9 @@ export default {
         this.$refs.TabControl2.currentIndex = index;
       },
 
-      backClick() {
-        this.$refs.scroll.scrollTo(0, 0, 500)
-      },
+      // backClick() {
+      //   this.$refs.scroll.scrollTo(0, 0, 500)
+      // },
 
       contentScroll(pos) {
         this.isShowTop = -pos.y > 1000;

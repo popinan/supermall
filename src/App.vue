@@ -3,10 +3,10 @@
     <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> -->
     <!-- <router-view/> -->
-    <keep-alive>
+    <keep-alive exclude="Detail">
       <router-view/>
     </keep-alive>
-    <main-tab-bar></main-tab-bar>
+    <main-tab-bar v-show="showTabBar"></main-tab-bar>
   </div>
 </template>
 
@@ -16,6 +16,12 @@ export default {
   name: "App",
   components: {
     MainTabBar,
+  },
+  computed: {
+    showTabBar() {
+      // console.log(this.$route.path.indexOf('/detail'))
+      return this.$route.path.indexOf('/detail') == -1
+    }
   },
 };
 </script>
