@@ -6,7 +6,7 @@
     <keep-alive exclude="Detail">
       <router-view/>
     </keep-alive>
-    <main-tab-bar v-show="showTabBar"></main-tab-bar>
+    <main-tab-bar v-show="showTabBar" ignore></main-tab-bar>
   </div>
 </template>
 

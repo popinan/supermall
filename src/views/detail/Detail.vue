@@ -10,7 +10,7 @@
         <detail-comment-info :commentInfo="commentInfo" ref="comment"/>
         <goods-list :goodslist="recommends" ref="recommend"/>
       </scroll>
-      <detail-bottom-bar/>
+      <detail-bottom-bar @addToCart="addToCart"/>
       <back-top @click.native="backClick" v-show="isShowTop"/>
   </div>
 </template>
@@ -97,7 +97,7 @@ export default {
                 this.themeTopYs[3] = this.$refs.recommend.$el.offsetTop;
                 this.themeTopYs[4] = Number.MAX_VALUE
                 console.log(this.themeTopYs)
-            },200)()
+            },150)()
         },
         titleClick(index) {
             this.$refs.scroll.scrollTo(0, -this.themeTopYs[index]+44)
@@ -112,6 +112,17 @@ export default {
                 }
             };
             this.isShowTop = -pos.y > 1000
+        },
+        addToCart() {
+            const cartGoods = {}
+            cartGoods.desc = this.goodsInfo.desc
+            cartGoods.price = this.goodsInfo.realPrice
+            cartGoods.image = this.topImages[0]
+            cartGoods.title = this.goodsInfo.title
+            cartGoods.iid = this.id
+            this.$store.dispatch('addCart', cartGoods).then((res)=>{
+                this.$toast.show(res, 2000)
+            })
         },
     },
 }
